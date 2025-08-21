@@ -10,14 +10,6 @@ const Navbar = () => {
           Social App
         </div>
 
-        {/* Links */}
-        <div className="hidden md:flex space-x-6 text-white">
-          <a href="#" className="hover:text-indigo-300">Home</a>
-          <a href="#" className="hover:text-indigo-300">About</a>
-          <a href="#" className="hover:text-indigo-300">Services</a>
-          <a href="#" className="hover:text-indigo-300">Contact</a>
-        </div>
-
         {/* Avatar + Dropdown */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
