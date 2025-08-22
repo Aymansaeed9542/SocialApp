@@ -10,10 +10,22 @@ const Register = () => {
     <form action="">
     {/* Name */}
 
-    <input type="text" placeholder="Enter your Name" className="input input-primary w-full bg-indigo-900 mb-5 mt-5 text-white" />
-    {/*  */}
-    <input type="text" placeholder="Enter your Name" className="input input-primary w-full bg-indigo-900 mb-5" />
-    <input type="text" placeholder="Enter your Name" className="input input-primary w-full bg-indigo-900 mb-5" />
+    <input type="text" placeholder="Name" className="input input-secondary w-full bg-indigo-900 mb-5 mt-5"/>
+    {/* Email */}
+    <input type="text" placeholder="Email" className="input input-secondary w-full bg-indigo-900 mb-5" />
+    {/* Password */}
+    <input type="password" placeholder="Password" className="input input-secondary w-full bg-indigo-900 mb-5" />
+    {/* rePassword */}
+    <input type="password" placeholder="rePassword" className="input input-secondary w-full bg-indigo-900 mb-5" />
+    {/* dateOfBirth */}
+    <input type="date" placeholder="date Of Birth" className="input input-secondary w-full bg-indigo-900 mb-5" />
+ <div className='mb-5'>
+  <input type="radio" id='male' name="gender" className="radio radio-secondary me-3"  />
+  <label htmlFor="male">Male</label>
+<input type="radio" id='female' name="gender" className="radio radio-secondary me-3 ms-3" />
+  <label htmlFor="female">Female</label>
+ </div>
+ <button className="btn btn-outline btn-secondary">Submit</button>
 
 
     </form>
