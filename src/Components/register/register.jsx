@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const {
@@ -13,14 +13,16 @@ const Register = () => {
   } = useForm();
 
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate();
 
- async function singup(values) {
+ async function signUp(values) {
    setIsLoading(true)
     try {
       const {data} = await axios.post("https://linked-posts.routemisr.com/users/signup" ,values)
       console.log(data);
       toast.success(data.message)
       setIsLoading(false)
+      navigate("/login")
     }
     catch(e){
       toast.error(e.response.data.error)
@@ -33,7 +35,7 @@ const Register = () => {
       <section className="w-1/2 mx-auto shadow-2xl bg-indigo-900 dark:shadow-indigo-950  shadow-gray-600 my-10 p-10 rounded-xl text-center">
         <h1 className="text-3xl">Register Now</h1>
 
-        <form action="" onSubmit={handleSubmit(singup)}>
+        <form action="" onSubmit={handleSubmit(signUp)}>
           {/* Name */}
 
           <input
