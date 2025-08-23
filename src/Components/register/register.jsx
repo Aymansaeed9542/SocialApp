@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 const Register = () => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors, touchedFields },
   } = useForm();
@@ -64,6 +65,12 @@ const Register = () => {
             })}
             className="input input-secondary w-full bg-indigo-900 mb-5"
           />
+          {errors?.email && touchedFields.email && (
+            <p className="text-red-600 mb-3">
+              {errors?.email?.message}
+            </p>
+          )}
+
           {/* Password */}
           <input
             type="password"
@@ -83,6 +90,13 @@ const Register = () => {
             })}
             className="input input-secondary w-full bg-indigo-900 mb-5"
           />
+
+          {errors?.password && touchedFields.password && (
+            <p className="text-red-600 mb-3">
+              {errors?.password?.message}
+            </p>
+          )}
+
           {/* rePassword */}
           <input
             type="password"
@@ -99,9 +113,23 @@ const Register = () => {
                 message:
                   "Password must have a uppercase , lowercase , numbers ans special characters",
               },
+              validate : function(value){
+                if(value === watch("password")){
+                return true
+                }
+                return "repassword doesn't match password"
+              }
             })}
             className="input input-secondary w-full bg-indigo-900 mb-5"
           />
+
+
+          {errors?.rePassword && touchedFields.rePassword && (
+            <p className="text-red-600 mb-3">
+              {errors?.rePassword?.message}
+            </p>
+          )}
+
           {/* dateOfBirth */}
           <input
             type="date"
@@ -113,9 +141,24 @@ const Register = () => {
                 message: "date is required",
               },
               valueAsDate: true,
+              validate : function(value){
+                const currentDate = new Date().getFullYear()
+                const userYear = value.getFullYear()
+                  if(currentDate - userYear >= 18){
+                    return true
+                  }
+                  return "you must be +18"
+              }
             })}
             className="input input-secondary w-full bg-indigo-900 mb-5"
           />
+
+          {errors?.dateOfBirth && touchedFields.dateOfBirth && (
+            <p className="text-red-600 mb-3">
+              {errors?.dateOfBirth?.message}
+            </p>
+          )}
+             {/* gender */}
           <div className="mb-5">
             <input
               type="radio"
@@ -131,14 +174,28 @@ const Register = () => {
               id="female"
               value={"female"}
               name="gender"
-              {...register("gender")}
+              {...register("gender" ,{
+                required :{
+                  value : true ,
+                  message : "please Choose your Gender"
+                }
+              }
+              )}
               className="radio radio-secondary me-3 ms-3"
             />
             <label htmlFor="female">Female</label>
           </div>
+                    {errors?.gender && touchedFields.gender && (
+            <p className="text-red-600 mb-3">
+              {errors?.gender?.message}
+            </p>
+          )}
+
           <button className="btn btn-outline btn-secondary">Submit</button>
         </form>
       </section>
+
+
     </>
   );
 };
