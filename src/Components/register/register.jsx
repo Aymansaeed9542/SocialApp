@@ -1,5 +1,8 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -9,8 +12,20 @@ const Register = () => {
     formState: { errors, touchedFields },
   } = useForm();
 
-  function singup(values) {
-    console.log(values);
+  const [isLoading, setIsLoading] = useState(false)
+
+ async function singup(values) {
+   setIsLoading(true)
+    try {
+      const {data} = await axios.post("https://linked-posts.routemisr.com/users/signup" ,values)
+      console.log(data);
+      toast.success(data.message)
+      setIsLoading(false)
+    }
+    catch(e){
+      toast.error(e.response.data.error)
+            setIsLoading(false)
+    }
   }
 
   return (
@@ -191,7 +206,7 @@ const Register = () => {
             </p>
           )}
 
-          <button className="btn btn-outline btn-secondary">Submit</button>
+          <button className="btn btn-outline btn-secondary"> {isLoading? <i className="fa-spinner fa-spin fa-solid text-white" ></i> : "Submit"}</button>
         </form>
       </section>
 
