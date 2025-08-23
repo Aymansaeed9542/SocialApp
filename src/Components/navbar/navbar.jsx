@@ -1,5 +1,5 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-indigo-800 mx-auto mt-0 rounded-xl w-[90%] sm:w-[700px] lg:w-[900px]" style={{boxShadow: '0 8px 15px -3px rgba(0, 0, 0, 0.5)'}}>
@@ -24,9 +24,9 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-52 p-2 shadow text-white"
           >
-            <li><a>Profile</a></li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
+            <li><NavLink to ="../login" >Login</NavLink></li>
+            <li><NavLink to ="../register" >Sign Up</NavLink></li>
+            <li><NavLink to ="../home" >Home</NavLink></li>
           </ul>
         </div>
 
