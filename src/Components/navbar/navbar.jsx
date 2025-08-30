@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate,  } from "react-router-dom";
 import { AuthContext } from "../../Context/authContext";
 const Navbar = () => {
-const {token ,  insertUserToken} = useContext(AuthContext)
-const navigate = useNavigate()
-function logOut(){
-  localStorage.removeItem("token");
-   insertUserToken(null);
-  navigate("/login");
-}
+const {token , logout:contextLogout  } = useContext(AuthContext)
 
+const navigate = useNavigate()
+function logout(){
+  contextLogout()
+navigate("/login")
+}
   return (
     <nav className="sticky top-0 z-50 bg-indigo-800 mx-auto mt-0 rounded-xl w-[90%] sm:w-[700px] lg:w-[900px]" style={{boxShadow: '0 8px 15px -3px rgba(0, 0, 0, 0.5)'}}>
       <div className="flex items-center justify-between px-6 h-16">
@@ -32,8 +31,8 @@ function logOut(){
             tabIndex={0}
             className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-52 p-2 shadow text-white"
           >
-            <li><NavLink to ="" >Porfile</NavLink></li>
-            <li><NavLink onClick={logOut} to ="" >Logout</NavLink></li>
+            <li><button to ="" >Porfile</button></li>
+            <li><button onClick={logout} to ="../login" >Logout</button></li>
           </ul>
         </div> 
         :

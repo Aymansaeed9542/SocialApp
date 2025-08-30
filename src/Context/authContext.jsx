@@ -16,6 +16,12 @@ const AuthContextProvider = ({children}) => {
 
     },[])
 
+
+    function logout(){
+  localStorage.removeItem("token");
+   setToken(null);
+}
+
     function insertUserToken(tkn){
         setToken(tkn)
     }
@@ -26,6 +32,7 @@ console.log(token);
         {
             token,
             insertUserToken,
+            logout,
         }
     }>
 
