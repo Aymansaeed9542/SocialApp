@@ -1,8 +1,15 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/authContext";
 const Navbar = () => {
-const {token} = useContext(AuthContext)
+const {token ,  insertUserToken} = useContext(AuthContext)
+const navigate = useNavigate()
+function logOut(){
+  localStorage.removeItem("token");
+   insertUserToken(null);
+  navigate("/login");
+}
+
   return (
     <nav className="sticky top-0 z-50 bg-indigo-800 mx-auto mt-0 rounded-xl w-[90%] sm:w-[700px] lg:w-[900px]" style={{boxShadow: '0 8px 15px -3px rgba(0, 0, 0, 0.5)'}}>
       <div className="flex items-center justify-between px-6 h-16">
@@ -26,7 +33,7 @@ const {token} = useContext(AuthContext)
             className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-52 p-2 shadow text-white"
           >
             <li><NavLink to ="" >Porfile</NavLink></li>
-            <li><NavLink to ="" >Logout</NavLink></li>
+            <li><NavLink onClick={logOut} to ="" >Logout</NavLink></li>
           </ul>
         </div> 
         :
@@ -44,19 +51,3 @@ const {token} = useContext(AuthContext)
 };
 
 export default Navbar;
-
-
-  <div className="flex-none">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Link</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="bg-base-100 rounded-t-none p-2">
-            <li><a>Link 1</a></li>
-            <li><a>Link 2</a></li>
-          </ul>
-        </details>
-      </li>
-    </ul>
-  </div>

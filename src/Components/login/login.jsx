@@ -24,6 +24,7 @@ const Login = () => {
       console.log(data);
       toast.success(data.message)
       setIsLoading(false)
+      localStorage.setItem("token" , data.token)
       insertUserToken(data.token)
       navigate("/home")
     }

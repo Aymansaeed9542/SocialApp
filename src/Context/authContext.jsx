@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createContext } from "react"
 
 
@@ -7,6 +7,14 @@ export const AuthContext = createContext()
 const AuthContextProvider = ({children}) => {
 
     const [token , setToken ] = useState(null);
+
+
+    useEffect(function(){ 
+        if (localStorage.getItem("token")!= null) {
+            setToken(localStorage.getItem("token"));
+        }
+
+    },[])
 
     function insertUserToken(tkn){
         setToken(tkn)
