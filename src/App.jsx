@@ -6,6 +6,7 @@ import Login from './Components/login/login.jsx'
 import Register from './Components/register/register.jsx'
 import Layout   from './Components/layout/layout.jsx'        
 import { Toaster } from 'react-hot-toast'
+import AuthContextProvider from './Context/authContext.jsx'
 
 function App() {
 const router =  createBrowserRouter([
@@ -20,13 +21,11 @@ const router =  createBrowserRouter([
 ]}
 ])
 
-
-
   return (
-    <>
+    <AuthContextProvider >
     <Toaster />
       <RouterProvider router={router} />
-    </>
+    </AuthContextProvider>
   )
 }
 

@@ -1,10 +1,13 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../../Context/authContext";
 const Login = () => {
+
+  const {insertUserToken} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
@@ -14,13 +17,14 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
 
- async function logIn(values) {
-   setIsLoading(true)
+  async function logIn(values) {
+    setIsLoading(true)
     try {
       const {data} = await axios.post("https://linked-posts.routemisr.com/users/signin" ,values)
       console.log(data);
       toast.success(data.message)
       setIsLoading(false)
+      insertUserToken(data.token)
       navigate("/home")
     }
     catch(e){

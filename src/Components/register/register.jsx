@@ -53,7 +53,7 @@ const Register = () => {
               },
               maxLength: {
                 value: 20,
-                message: "minimum Characters is 20",
+                message: "mixmum Characters is 20",
               },
             })}
             className="input input-secondary w-full bg-indigo-900 mb-5 mt-5"
