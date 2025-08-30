@@ -11,7 +11,7 @@ const AuthContextProvider = ({children}) => {
     function insertUserToken(tkn){
         setToken(tkn)
     }
-console.log(tokengit);
+console.log(token);
 
   return (
     <AuthContext.Provider value={
